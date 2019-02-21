@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="将图片转canvas">
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Leslie">
+
+
+
+
+
+
+<link rel="canonical" href="http://idyzz.com/2017/05/11/20170511/">
+
+
+<meta name="description" content="1234567891011var canvas = document.createElement(&apos;canvas&apos;);var context = canvas.getContext(&apos;2d&apos;); var img = new Image();img.crossOrigin = &apos;&apos;;  //图片转canvasimg.onload = function () &amp;#123;    context.dr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="将图片转canvas">
+<meta property="og:url" content="http://idyzz.com/2017/05/11/20170511/index.html">
+<meta property="og:site_name" content="Leslie">
+<meta property="og:description" content="1234567891011var canvas = document.createElement(&apos;canvas&apos;);var context = canvas.getContext(&apos;2d&apos;); var img = new Image();img.crossOrigin = &apos;&apos;;  //图片转canvasimg.onload = function () &amp;#123;    context.dr">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-23T07:08:42.168Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="将图片转canvas">
+<meta name="twitter:description" content="1234567891011var canvas = document.createElement(&apos;canvas&apos;);var context = canvas.getContext(&apos;2d&apos;); var img = new Image();img.crossOrigin = &apos;&apos;;  //图片转canvasimg.onload = function () &amp;#123;    context.dr">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> 将图片转canvas - Leslie </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Leslie</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/">
+                            
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                关于
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          将图片转canvas
+        
+      </h1>
+
+      <time class="post-time">
+          May 11 2017
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var canvas = document.createElement(<span class="string">'canvas'</span>);</span><br><span class="line">var context = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line"> </span><br><span class="line">var img = new Image();</span><br><span class="line">img.crossOrigin = <span class="string">''</span>;  //图片转canvas</span><br><span class="line">img.onload = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    context.drawImage(this, 0, 0);</span><br><span class="line">    context.getImageData(0, 0, this.width, this.height);</span><br><span class="line">   document.body.appendChild(canvas);</span><br><span class="line">&#125;;</span><br><span class="line">img.src = <span class="string">"https://pic4.zhimg.com/869cf812c5a1beb827d723e6332748a1_m.jpg"</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在图片onload以后生成并添加到body里面</p>
+</blockquote>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/05/13/20170514/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">把一串数字等位分割并添加字符在分割的中间</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/04/10/深拷贝与浅拷贝/">
+        <span class="next-text nav-default">深拷贝与浅拷贝</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Deng Chao</span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

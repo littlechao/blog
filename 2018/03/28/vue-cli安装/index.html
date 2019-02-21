@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="vue-cli安装">
+
+
+
+
+  <meta name="keywords" content="vue-cli,">
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Leslie">
+
+
+
+
+
+
+<link rel="canonical" href="http://idyzz.com/2018/03/28/vue-cli安装/">
+
+
+<meta name="description" content="1、安装vue-cli 1npm install vue-cli -g 2、安装模板 123vue init webpack-simple my-project-name(简洁)vue init webpack my-project-name(完整) 3、使用sass 12&amp;lt;style lang=&quot;scss&quot;&amp;gt;&amp;lt;/style&amp;gt; 使用element-ui,需要引入loade">
+<meta name="keywords" content="vue-cli">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue-cli安装">
+<meta property="og:url" content="http://idyzz.com/2018/03/28/vue-cli安装/index.html">
+<meta property="og:site_name" content="Leslie">
+<meta property="og:description" content="1、安装vue-cli 1npm install vue-cli -g 2、安装模板 123vue init webpack-simple my-project-name(简洁)vue init webpack my-project-name(完整) 3、使用sass 12&amp;lt;style lang=&quot;scss&quot;&amp;gt;&amp;lt;/style&amp;gt; 使用element-ui,需要引入loade">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-23T07:08:42.177Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue-cli安装">
+<meta name="twitter:description" content="1、安装vue-cli 1npm install vue-cli -g 2、安装模板 123vue init webpack-simple my-project-name(简洁)vue init webpack my-project-name(完整) 3、使用sass 12&amp;lt;style lang=&quot;scss&quot;&amp;gt;&amp;lt;/style&amp;gt; 使用element-ui,需要引入loade">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> vue-cli安装 - Leslie </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Leslie</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/">
+                            
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                关于
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          vue-cli安装
+        
+      </h1>
+
+      <time class="post-time">
+          Mar 28 2018
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <a id="more"></a>
+<p>1、安装vue-cli</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-cli -g</span><br></pre></td></tr></table></figure>
+<p>2、安装模板</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack-simple my-project-name(简洁)</span><br><span class="line"></span><br><span class="line">vue init webpack my-project-name(完整)</span><br></pre></td></tr></table></figure>
+<p>3、使用sass</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;style lang=<span class="string">"scss"</span>&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>使用element-ui,需要引入loader，配置webpack.base</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="built_in">test</span>: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,</span><br><span class="line">    loader: <span class="string">'file-loader'</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">test</span>: /\.(png|jpe?g|gif|svg)(\?\S*)?$/,</span><br><span class="line">    loader: <span class="string">'file-loader'</span>,</span><br><span class="line">    query: &#123;</span><br><span class="line">        name: <span class="string">'[name].[ext]?[hash]'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">　　</span><br><span class="line">//在项目下，运行下列命令行</span><br><span class="line">npm install --save-dev sass-loader</span><br><span class="line">//因为sass-loader依赖于node-sass，所以还要安装node-sass</span><br><span class="line">npm install --save-dev node-sass</span><br></pre></td></tr></table></figure>
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/vue-cli/">vue-cli</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/03/30/数组中迭代方法-js/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">数组中迭代方法-js</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/03/28/async与awit/">
+        <span class="next-text nav-default">async与awit</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Deng Chao</span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="JS - vue状态传递（bus、vuex）">
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Leslie">
+
+
+
+
+
+
+<link rel="canonical" href="http://idyzz.com/2018/03/20/20180320-vue/">
+
+
+<meta name="description" content="vue组件之间传递状态">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS - vue状态传递（bus、vuex）">
+<meta property="og:url" content="http://idyzz.com/2018/03/20/20180320-vue/index.html">
+<meta property="og:site_name" content="Leslie">
+<meta property="og:description" content="vue组件之间传递状态">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-23T07:08:42.173Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS - vue状态传递（bus、vuex）">
+<meta name="twitter:description" content="vue组件之间传递状态">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> JS - vue状态传递（bus、vuex） - Leslie </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Leslie</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/">
+                            
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                关于
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          JS - vue状态传递（bus、vuex）
+        
+      </h1>
+
+      <time class="post-time">
+          Mar 20 2018
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <p>vue组件之间传递状态</p>
+<a id="more"></a>
+<blockquote>
+<p>如果是小的项目基本用一个bus就行了</p>
+</blockquote>
+<h2 id="1-根目录新建一个js文件"><a href="#1-根目录新建一个js文件" class="headerlink" title="1.根目录新建一个js文件"></a>1.根目录新建一个js文件</h2><p>bus.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import Vue from <span class="string">'vue'</span>;</span><br><span class="line"><span class="built_in">export</span> const bus = new Vue();</span><br><span class="line"></span><br><span class="line">第一步发送：</span><br><span class="line">import &#123;bus&#125; from <span class="string">'./bus'</span>;</span><br><span class="line">bus.<span class="variable">$emit</span>(<span class="string">"msg"</span>,<span class="string">"hello world!"</span>);</span><br><span class="line"></span><br><span class="line">第二步接收：</span><br><span class="line">bus.<span class="variable">$on</span>(<span class="string">'msg'</span>,(res)=&gt;&#123;</span><br><span class="line">    this.state = res;   //这里的state是需要更改的值</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">到此一个简单的状态传递例子就实现了，但是如果状态过多难以管理怎么办？</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>运用vuex实现状态管理</p>
+</blockquote>
+<p> 1.首先是安装vuex</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vuex --save-dev</span><br></pre></td></tr></table></figure>
+<h3 id="一个store文件夹包括三个文件-如果需要管理更过状态，还可以引入mutation-type-js"><a href="#一个store文件夹包括三个文件-如果需要管理更过状态，还可以引入mutation-type-js" class="headerlink" title="一个store文件夹包括三个文件,如果需要管理更过状态，还可以引入mutation-type.js"></a>一个store文件夹包括三个文件,如果需要管理更过状态，还可以引入mutation-type.js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">|--index.js</span><br><span class="line">|--actions.js</span><br><span class="line">|--mutation.js</span><br><span class="line">|--mutation-type.js</span><br></pre></td></tr></table></figure>
+<h1 id="index-js"><a href="#index-js" class="headerlink" title="index.js:"></a>index.js:</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">import actions from <span class="string">'./actions'</span>;</span><br><span class="line">import mutations from <span class="string">'./mutations'</span>;</span><br><span class="line"><span class="built_in">export</span> default &#123;</span><br><span class="line">    state: &#123;</span><br><span class="line">        <span class="built_in">test</span>: 56,</span><br><span class="line">        todoList:[],</span><br><span class="line">        todoInfo:&#123;</span><br><span class="line">            id: 0,</span><br><span class="line">            text: <span class="string">''</span>,</span><br><span class="line">            isDone: <span class="literal">false</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        selected: 0</span><br><span class="line">    &#125;,</span><br><span class="line">    actions: actions,</span><br><span class="line">    mutations: mutations,</span><br><span class="line">    getters:&#123;</span><br><span class="line">        filterDoned: <span class="keyword">function</span> (state) &#123; //已完成的todo</span><br><span class="line">            <span class="built_in">let</span> todoList = state.todoList.filter((item)=&gt;&#123;</span><br><span class="line">                <span class="keyword">if</span>(item.isDone)&#123;</span><br><span class="line">                  <span class="built_in">return</span> item;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="built_in">return</span> todoList;</span><br><span class="line">        &#125;,</span><br><span class="line">        filterNoDoned: <span class="keyword">function</span> (state) &#123;</span><br><span class="line">          <span class="built_in">let</span> todoList = state.todoList.filter((item)=&gt;&#123;</span><br><span class="line">            <span class="keyword">if</span>(!item.isDone)&#123;</span><br><span class="line">              <span class="built_in">return</span> item;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;);</span><br><span class="line">          <span class="built_in">return</span> todoList;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="getters-js-有时候我们需要从-store-中的-state-中派生出一些状态，例如对列表进行过滤并计数："><a href="#getters-js-有时候我们需要从-store-中的-state-中派生出一些状态，例如对列表进行过滤并计数：" class="headerlink" title="getters.js:有时候我们需要从 store 中的 state 中派生出一些状态，例如对列表进行过滤并计数："></a>getters.js:有时候我们需要从 store 中的 state 中派生出一些状态，例如对列表进行过滤并计数：</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">  <span class="function"><span class="title">doneTodosCount</span></span> () &#123;</span><br><span class="line">    <span class="built_in">return</span> this.<span class="variable">$store</span>.state.todos.filter(todo =&gt; todo.done).length</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="actions-js-Action-类似于-mutation，不同在于："><a href="#actions-js-Action-类似于-mutation，不同在于：" class="headerlink" title="actions.js:Action 类似于 mutation，不同在于："></a>actions.js:Action 类似于 mutation，不同在于：</h1><ul>
+<li>Action 提交的是 mutation，而不是直接变更状态。</li>
+<li>Action 可以包含任意异步操作。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import * as types from <span class="string">'./mutation_type'</span>;</span><br><span class="line"><span class="built_in">export</span> default &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 增加todo</span><br><span class="line">     * @param commit</span><br><span class="line">     * @param mobile</span><br><span class="line">     */</span><br><span class="line">    addTodo(&#123; commit &#125; , todoText)&#123;</span><br><span class="line">        commit(types.ADD_TODO , todoText);</span><br><span class="line">    &#125;,</span><br><span class="line">    doneTodo(&#123; commit &#125; , id)&#123;</span><br><span class="line">        commit(types.DONE_TODO , id);</span><br><span class="line">    &#125;,</span><br><span class="line">    selectType(&#123; commit &#125; , <span class="built_in">type</span>)&#123;</span><br><span class="line">        commit(types.SELECT_TYPE , <span class="built_in">type</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="mutation-js-更改-Vuex-的-store-中的状态的唯一方法是提交-mutation。Vuex-中的-mutation-非常类似于事件：每个-mutation-都有一个字符串的-事件类型-type-和-一个-回调函数-handler-。这个回调函数就是我们实际进行状态更改的地方，并且它会接受-state-作为第一个参数："><a href="#mutation-js-更改-Vuex-的-store-中的状态的唯一方法是提交-mutation。Vuex-中的-mutation-非常类似于事件：每个-mutation-都有一个字符串的-事件类型-type-和-一个-回调函数-handler-。这个回调函数就是我们实际进行状态更改的地方，并且它会接受-state-作为第一个参数：" class="headerlink" title="mutation.js:更改 Vuex 的 store 中的状态的唯一方法是提交 mutation。Vuex 中的 mutation 非常类似于事件：每个 mutation 都有一个字符串的 事件类型 (type) 和 一个 回调函数 (handler)。这个回调函数就是我们实际进行状态更改的地方，并且它会接受 state 作为第一个参数："></a>mutation.js:更改 Vuex 的 store 中的状态的唯一方法是提交 mutation。Vuex 中的 mutation 非常类似于事件：每个 mutation 都有一个字符串的 事件类型 (type) 和 一个 回调函数 (handler)。这个回调函数就是我们实际进行状态更改的地方，并且它会接受 state 作为第一个参数：</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">import * as types from <span class="string">'./mutation_type'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default &#123;</span><br><span class="line">    [types.ADD_TEST] (state,num) &#123;</span><br><span class="line">      state.test +=num;</span><br><span class="line">      console.log(state.test);</span><br><span class="line">    &#125;,</span><br><span class="line">    [types.ADD_TODO] (state , todoText) &#123;</span><br><span class="line">        <span class="keyword">if</span>(todoText)&#123;</span><br><span class="line">          <span class="built_in">let</span> todoInfo = &#123;&#125;;</span><br><span class="line">          todoInfo.isDone = <span class="literal">false</span>;</span><br><span class="line">          <span class="keyword">if</span>(state.todoList.length == 0)&#123;</span><br><span class="line">            todoInfo.id = 0;</span><br><span class="line">          &#125;<span class="keyword">else</span> <span class="keyword">if</span>(state.todoList.length &gt; 0)&#123;</span><br><span class="line">            <span class="built_in">let</span> todoFirst = state.todoList[state.todoList.length - 1];</span><br><span class="line">            console.log(todoFirst.text + <span class="string">' , '</span> + todoFirst.id);</span><br><span class="line">            todoInfo.id = todoFirst.id + 1;</span><br><span class="line">          &#125;</span><br><span class="line">          todoInfo.text = todoText;</span><br><span class="line">          state.todoList.push(todoInfo);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    [types.DONE_TODO] (state , id) &#123;</span><br><span class="line">       state.todoList.map((item)=&gt;&#123;</span><br><span class="line">          console.log(item.id);</span><br><span class="line">          <span class="keyword">if</span>(item.id == id)&#123;</span><br><span class="line">             item.isDone = <span class="literal">true</span>;</span><br><span class="line">          &#125;</span><br><span class="line">       &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">  [types.SELECT_TYPE] (state , <span class="built_in">type</span>) &#123;</span><br><span class="line">      state.selected = <span class="built_in">type</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="mutation-type-js"><a href="#mutation-type-js" class="headerlink" title="mutation-type.js:"></a>mutation-type.js:</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">export</span> const ADD_TODO = <span class="string">'ADD_TODO'</span>;</span><br><span class="line"><span class="built_in">export</span> const DONE_TODO = <span class="string">'DONE_TODO'</span>;</span><br><span class="line"><span class="built_in">export</span> const SELECT_TYPE = <span class="string">'SELECT_TYPE'</span>;</span><br><span class="line"><span class="built_in">export</span> const ADD_TEST = <span class="string">'ADD_TEST'</span>;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">使用方法：</span><br><span class="line">this.$store.dispatch(&apos;addTodo&apos; , &apos;todoText&apos;);</span><br><span class="line">直接取变量：</span><br><span class="line">this.$store.state.todo.test</span><br></pre></td></tr></table></figure>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/03/27/20170519-sfy/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">圣杯布局与双飞翼布局实现</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/03/19/20180319-promise/">
+        <span class="next-text nav-default">JS - Promise使用详解2（ES6中的Promise）</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Deng Chao</span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

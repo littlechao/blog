@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="redux记录">
+
+
+
+
+  <meta name="keywords" content="redux,">
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Leslie">
+
+
+
+
+
+
+<link rel="canonical" href="http://idyzz.com/2018/10/10/redux记录/">
+
+
+<meta name="description" content="创建redux，中间件使用方法">
+<meta name="keywords" content="redux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redux记录">
+<meta property="og:url" content="http://idyzz.com/2018/10/10/redux记录/index.html">
+<meta property="og:site_name" content="Leslie">
+<meta property="og:description" content="创建redux，中间件使用方法">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-11T00:52:24.169Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redux记录">
+<meta name="twitter:description" content="创建redux，中间件使用方法">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> redux记录 - Leslie </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Leslie</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/">
+                            
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                关于
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          redux记录
+        
+      </h1>
+
+      <time class="post-time">
+          Oct 10 2018
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <p>创建redux，中间件使用方法</p>
+<a id="more"></a>
+<h1 id="创建redux"><a href="#创建redux" class="headerlink" title="创建redux"></a>创建redux</h1><h2 id="创建action-action-js"><a href="#创建action-action-js" class="headerlink" title="创建action -action.js"></a>创建action -action.js</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> const ADD_TO_CART = <span class="string">'ADD_TO_CART'</span>;</span><br><span class="line"><span class="built_in">export</span> <span class="keyword">function</span> addToCart(product, quantity, unitCost) &#123;</span><br><span class="line">  <span class="built_in">return</span> &#123;</span><br><span class="line">    <span class="built_in">type</span>: ADD_TO_CART,</span><br><span class="line">    payload: &#123; product, quantity, unitCost &#125; //传递的参数</span><br><span class="line">    error:<span class="string">''</span> //可自己创建</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>##创建reducer reducer.js<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import  &#123; ADD_TO_CART &#125;  from <span class="string">'../action.js'</span>;</span><br><span class="line"></span><br><span class="line">const initialState = &#123;</span><br><span class="line">  cart: [</span><br><span class="line">    &#123;</span><br><span class="line">      product: <span class="string">'bread 700g'</span>,</span><br><span class="line">      quantity: 2,</span><br><span class="line">      unitCost: 90</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">export</span> default <span class="keyword">function</span>(state=initialState, action) &#123;</span><br><span class="line">  switch (action.type) &#123;</span><br><span class="line">    <span class="keyword">case</span> ADD_TO_CART: &#123;</span><br><span class="line">      <span class="built_in">return</span> &#123;</span><br><span class="line">        ...state,</span><br><span class="line">        cart: [...state.cart, action.payload],</span><br><span class="line">        carts: [...state.cart, action.payload]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    default:</span><br><span class="line">      <span class="built_in">return</span> state;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##创建store.js初始化redux -index.js<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import &#123; combineReducers &#125; from <span class="string">'redux'</span>;</span><br><span class="line">import reducer from <span class="string">'reducer.js'</span>;</span><br><span class="line">const allReducers = &#123;</span><br><span class="line">  example: reducer,</span><br><span class="line">&#125;</span><br><span class="line">const rootReducer = combineReducers(allReducers);</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default rootReducer;</span><br></pre></td></tr></table></figure></p>
+<p>#调用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import store from <span class="string">'index.js'</span>;</span><br><span class="line"></span><br><span class="line">store.getState();  //获取store</span><br><span class="line"></span><br><span class="line"><span class="built_in">let</span> unsubscribe = store.subscribe(() =&gt;   //监听数据变化</span><br><span class="line">  console.log(store.getState())</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">store.dispatch(addToCart(<span class="string">'Coffee 500gm'</span>, 1, 250));  //调用方法</span><br></pre></td></tr></table></figure></p>
+<p>#在router中配置store<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Provider &#125; from <span class="string">'react-redux'</span>;</span><br><span class="line">import &#123; Route,HashRouter,Redirect&#125; from <span class="string">"react-router-dom"</span>;</span><br><span class="line">  ...</span><br><span class="line">  render(</span><br><span class="line">    &lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">      &lt;HashRouter&gt;</span><br><span class="line">        &lt;React.Fragment&gt;   //代替空的div</span><br><span class="line">          &lt;Route path=<span class="string">"/"</span> exact render=&#123;App.onRedirct&#125;/&gt;</span><br><span class="line">          &lt;Route exact path=<span class="string">"/home"</span> component=&#123;Home&#125; /&gt;</span><br><span class="line">          &lt;Bottom /&gt;</span><br><span class="line">        &lt;/React.Fragment&gt;</span><br><span class="line">      &lt;/HashRouter&gt;</span><br><span class="line">    &lt;/Provider&gt;</span><br><span class="line">  )</span><br></pre></td></tr></table></figure></p>
+<p>##在例子home中调用store<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">import &#123; connect &#125; from <span class="string">"react-redux"</span>;</span><br><span class="line"></span><br><span class="line">const mapStateToProps = state =&gt; state.shoppingCart;</span><br><span class="line">const mapDispatchToProps = (dispatch) =&gt; (&#123;</span><br><span class="line">  addToCart : (params) =&gt; dispatch(addToCart(params))</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">export</span> default connect(mapStateToProps,mapDispatchToProps)(Home);</span><br><span class="line"></span><br><span class="line">-- 通过connect中间件连接后在主键中就可调用store的变量或者函数：</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">componentDidMount</span></span>()&#123;</span><br><span class="line">  console.log(this.props)  </span><br><span class="line">  // &#123;</span><br><span class="line">    addToCart:<span class="function"><span class="title">function</span></span>()&#123;&#125;,</span><br><span class="line">    cart:[&#123;</span><br><span class="line">      product: <span class="string">'bread 700g'</span>,</span><br><span class="line">      quantity: 2,</span><br><span class="line">      unitCost: 90</span><br><span class="line">    &#125;],</span><br><span class="line">    title: <span class="string">"Home"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">this.props.addToCart(&#123;product: <span class="string">'bread 100g'</span>,quantity: 3,unitCost: 100&#125;)</span><br><span class="line"></span><br><span class="line">--  用装饰器@引入</span><br><span class="line"></span><br><span class="line">const mapDispatchToProps = (dispatch) =&gt; (&#123;</span><br><span class="line">  addToCart : (params) =&gt; dispatch(addToCart(params))</span><br><span class="line">&#125;)</span><br><span class="line">@connect(</span><br><span class="line">  state =&gt; state.cart,</span><br><span class="line">  mapDispatchToProps</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">若一个主键下面有许多子组件需要引入connect，减少冗余代码：  --connect.js</span><br><span class="line"></span><br><span class="line">import &#123;connect&#125; from <span class="string">'react-redux'</span></span><br><span class="line"></span><br><span class="line">const mapDispatchToProps = (dispatch) =&gt; (&#123;</span><br><span class="line">  addToCart : (params) =&gt; dispatch(addToCart(params))</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">export</span> default connect(</span><br><span class="line"> state=&gt;state.cart,</span><br><span class="line"> mapDispatchToProps</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">引入：</span><br><span class="line">import connect from <span class="string">'connect.js'</span></span><br><span class="line">@connect</span><br></pre></td></tr></table></figure></p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/redux/">redux</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/10/13/redux-thunk/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">redux-thunk</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/09/25/vue打包后ie无法访问/">
+        <span class="next-text nav-default">vue打包后ie无法访问</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Deng Chao</span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

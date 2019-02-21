@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="如何实现add(1,2,3,4)与add(1)(2)(3)(4)的和的运算">
+
+
+
+
+  <meta name="keywords" content="javascript,">
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Leslie">
+
+
+
+
+
+
+<link rel="canonical" href="http://idyzz.com/2018/03/30/如何实现add-1-2-3-4-与add-1-2-3-4-的和的运算/">
+
+
+<meta name="description" content="通过函数方法实现add(1,2,3,4)与add(1)(2)(3)(4)的运算">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何实现add(1,2,3,4)与add(1)(2)(3)(4)的和的运算">
+<meta property="og:url" content="http://idyzz.com/2018/03/30/如何实现add-1-2-3-4-与add-1-2-3-4-的和的运算/index.html">
+<meta property="og:site_name" content="Leslie">
+<meta property="og:description" content="通过函数方法实现add(1,2,3,4)与add(1)(2)(3)(4)的运算">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-23T07:08:42.178Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何实现add(1,2,3,4)与add(1)(2)(3)(4)的和的运算">
+<meta name="twitter:description" content="通过函数方法实现add(1,2,3,4)与add(1)(2)(3)(4)的运算">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> 如何实现add(1,2,3,4)与add(1)(2)(3)(4)的和的运算 - Leslie </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Leslie</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/">
+                            
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                关于
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          如何实现add(1,2,3,4)与add(1)(2)(3)(4)的和的运算
+        
+      </h1>
+
+      <time class="post-time">
+          Mar 30 2018
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <p>通过函数方法实现add(1,2,3,4)与add(1)(2)(3)(4)的运算</p>
+<a id="more"></a>
+<h2 id="add-1-2-3-4-的实现"><a href="#add-1-2-3-4-的实现" class="headerlink" title="add(1,2,3,4) 的实现"></a>add(1,2,3,4) 的实现</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">count_fun</span></span>()&#123;</span><br><span class="line">    // <span class="built_in">let</span> arr = Array.prototype.slice.apply(arguments);</span><br><span class="line">    // _fun = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    //     Array.prototype.push.apply(arguments);</span><br><span class="line">    //     <span class="built_in">return</span>  _fun;</span><br><span class="line">    // &#125;;</span><br><span class="line">    console.log(arguments);</span><br><span class="line">    console.log(Array.from(arguments).length);</span><br><span class="line">    <span class="built_in">return</span> Array.from(arguments).reduce((prev,next)=&gt;&#123;</span><br><span class="line">        <span class="built_in">return</span> prev+next;</span><br><span class="line">    &#125;,0);</span><br><span class="line">&#125;</span><br><span class="line">console.log(count_fun(1,2,3,4));</span><br><span class="line"></span><br><span class="line">// 10</span><br></pre></td></tr></table></figure>
+<h2 id="add-1-2-3-4-函数的柯里化"><a href="#add-1-2-3-4-函数的柯里化" class="headerlink" title="add(1)(2)(3)(4) 函数的柯里化"></a>add(1)(2)(3)(4) 函数的柯里化</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">方法一：</span><br><span class="line"><span class="keyword">function</span> add(x) &#123;</span><br><span class="line">    var sum = x;</span><br><span class="line">    var tmp = <span class="keyword">function</span> (y) &#123;</span><br><span class="line">        sum = sum + y;</span><br><span class="line">        <span class="built_in">return</span> tmp;</span><br><span class="line">    &#125;;</span><br><span class="line">    tmp.toString = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">        <span class="built_in">return</span> sum;</span><br><span class="line">    &#125;;</span><br><span class="line">     <span class="built_in">return</span> tmp;</span><br><span class="line"> &#125;</span><br><span class="line">方法二：</span><br><span class="line"><span class="keyword">function</span> add(num)&#123;</span><br><span class="line">    var sum=0;</span><br><span class="line">    sum= sum+num;</span><br><span class="line">    <span class="built_in">return</span> <span class="keyword">function</span> tempFun(numB)&#123;</span><br><span class="line">        <span class="keyword">if</span>(arguments.length===0)&#123;</span><br><span class="line">            <span class="built_in">return</span> sum;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            sum= sum+ numB;</span><br><span class="line">            <span class="built_in">return</span> tempFun;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">方法三：</span><br><span class="line"><span class="keyword">function</span> add(n) &#123;</span><br><span class="line">    var fn = <span class="keyword">function</span>(m) &#123;</span><br><span class="line">      <span class="built_in">return</span> add(n + m);</span><br><span class="line">    &#125;;</span><br><span class="line">  </span><br><span class="line">    fn.valueOf = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">      <span class="built_in">return</span> n;</span><br><span class="line">    &#125;;</span><br><span class="line">  </span><br><span class="line">    fn.toString = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">      <span class="built_in">return</span> <span class="string">''</span> + n;</span><br><span class="line">    &#125;;</span><br><span class="line">  </span><br><span class="line">    <span class="built_in">return</span> fn;</span><br><span class="line">&#125;</span><br><span class="line">console.log(add(1));  //6</span><br><span class="line">console.log(add(1)(2)(3));  //6</span><br><span class="line">console.log(add(1)(2)(3)(4)); //10</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var person = &#123;</span><br><span class="line">  name: <span class="string">"张三"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var proxy = new Proxy(person, &#123;</span><br><span class="line">  get: <span class="keyword">function</span>(target, property) &#123;</span><br><span class="line">    <span class="keyword">if</span> (property <span class="keyword">in</span> target) &#123;</span><br><span class="line">      <span class="built_in">return</span> target[property];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      console.log(<span class="string">"Property \""</span> + property + <span class="string">"\" does not exist."</span>) ;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">proxy.name // <span class="string">"张三"</span></span><br><span class="line">proxy.age // 抛出一个错误</span><br></pre></td></tr></table></figure>
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/javascript/">javascript</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/04/02/闭包-javascript/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">闭包-javascript</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/03/30/数组中迭代方法-js/">
+        <span class="next-text nav-default">数组中迭代方法-js</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Deng Chao</span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

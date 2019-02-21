@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="闭包-javascript">
+
+
+
+
+  <meta name="keywords" content="js闭包,">
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Leslie">
+
+
+
+
+
+
+<link rel="canonical" href="http://idyzz.com/2018/04/02/闭包-javascript/">
+
+
+<meta name="description" content="有一个li列表，点击点击对应的列表弹出相应的序号">
+<meta name="keywords" content="js闭包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="闭包-javascript">
+<meta property="og:url" content="http://idyzz.com/2018/04/02/闭包-javascript/index.html">
+<meta property="og:site_name" content="Leslie">
+<meta property="og:description" content="有一个li列表，点击点击对应的列表弹出相应的序号">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-23T07:08:42.180Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="闭包-javascript">
+<meta name="twitter:description" content="有一个li列表，点击点击对应的列表弹出相应的序号">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> 闭包-javascript - Leslie </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Leslie</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/">
+                            
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                关于
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          闭包-javascript
+        
+      </h1>
+
+      <time class="post-time">
+          Apr 02 2018
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <p>有一个li列表，点击点击对应的列表弹出相应的序号</p>
+<a id="more"></a>
+<p>html如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body onload=<span class="string">"onMyLoad()"</span>&gt;</span><br><span class="line">    &lt;p&gt;一&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;二&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;三&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;四&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;五&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  一般看到这种需求可能会直接写出代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">onMyLoad</span></span>()&#123;</span><br><span class="line">    var arr = document.getElementsByTagName(<span class="string">"p"</span>);</span><br><span class="line">    <span class="keyword">for</span>(var i = 0; i &lt; arr.length;i++)&#123;</span><br><span class="line">        arr[i].onclick = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">            alert(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">但是这样写并不会点一次弹出相应的序号，而是全部是alert(4);</span><br></pre></td></tr></table></figure></p>
+<h1 id="若要实现就需换种方法"><a href="#若要实现就需换种方法" class="headerlink" title="若要实现就需换种方法"></a>若要实现就需换种方法</h1><p>方法一：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(var i = 0;i&lt;arr.length;i++)&#123;</span><br><span class="line">    //声明一个匿名函数,若传进来的是基本类型则为值传递,故不会对实参产生影响,</span><br><span class="line">    //该函数对象有一个本地私有变量arg(形参) ,该函数的 <span class="keyword">function</span> scope 的 closure 对象属性有两个引用,一个是 arr,一个是 i</span><br><span class="line">    尽管引用 i 的值随外部改变 ,但本地私有变量(形参) arg 不会受影响,其值在一开始被调用的时候就决定了.</span><br><span class="line">    (<span class="keyword">function</span> (arg) &#123;</span><br><span class="line">        arr[i].onclick = <span class="function"><span class="title">function</span></span> () &#123;  //onclick函数实例的 <span class="keyword">function</span> scope 的 closure 对象属性有一个引用 arg,</span><br><span class="line">            alert(arg);                 //只要 外部空间的 arg 不变,这里的引用值当然不会改变</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)(i);                              //立刻执行该匿名函数,传递下标 i(实参)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>方法二：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(var i = 0;i&lt;arr.length;i++)&#123;</span><br><span class="line">    //为当前数组项即当前 p 对象添加一个名为 i 的属性,值为循环体的 i 变量的值,</span><br><span class="line">    //此时当前 p 对象的 i 属性并不是对循环体的 i 变量的引用,而是一个独立p 对象的属性,属性值在声明的时候就确定了</span><br><span class="line">    //(基本类型的值都是存在栈中的,当有一个基本类型变量声明其等于另一个基本变量时,此时并不是两个基本类型变量都指向一个值,而是各自有各自的值,但值是相等的)</span><br><span class="line">    arr[i].i = i;</span><br><span class="line">    arr[i].onclick = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">        alert(this.i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>方法三：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(var i = 0; i&lt;arr.length;i++)&#123;</span><br><span class="line">    arr[i].onclick = (<span class="keyword">function</span>(arg)&#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">            alert(arg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>方法四：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(var i = 0; i&lt;arr.length;i++)&#123;</span><br><span class="line">    (<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">        var temp = i;</span><br><span class="line">        arr[i].onclick = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">            alert(temp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>方法五：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(var i = 0;i&lt;arr.length;i++)&#123;</span><br><span class="line">    arr[i].onclick = (<span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">        var temp = i;</span><br><span class="line">        <span class="built_in">return</span> <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">            alert(temp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>方法六：</p>
+<pre><code class="bash"><span class="keyword">for</span>(var i = 0;i&lt;arr.length;i++){
+    (arr[i].onclick = <span class="function"><span class="title">function</span></span> () {
+        alert(arguments.callee.i);      //arguments 参数对象  arguments.callee 参数对象所属函数
+    }).i = i;
+}
+</code></pre>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/js闭包/">js闭包</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/04/02/vue拦截跳转/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">vue拦截跳转</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/03/30/如何实现add-1-2-3-4-与add-1-2-3-4-的和的运算/">
+        <span class="next-text nav-default">如何实现add(1,2,3,4)与add(1)(2)(3)(4)的和的运算</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Deng Chao</span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

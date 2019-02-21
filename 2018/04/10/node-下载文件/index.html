@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="node 下载文件">
+
+
+
+
+  <meta name="keywords" content="nodejs,">
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Leslie">
+
+
+
+
+
+
+<link rel="canonical" href="http://idyzz.com/2018/04/10/node-下载文件/">
+
+
+<meta name="description" content="通过nodejs中fs模块下载文件并保存在文件夹中">
+<meta name="keywords" content="nodejs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node 下载文件">
+<meta property="og:url" content="http://idyzz.com/2018/04/10/node-下载文件/index.html">
+<meta property="og:site_name" content="Leslie">
+<meta property="og:description" content="通过nodejs中fs模块下载文件并保存在文件夹中">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-23T07:08:42.176Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="node 下载文件">
+<meta name="twitter:description" content="通过nodejs中fs模块下载文件并保存在文件夹中">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> node 下载文件 - Leslie </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Leslie</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/">
+                            
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                关于
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          node 下载文件
+        
+      </h1>
+
+      <time class="post-time">
+          Apr 10 2018
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <p>通过nodejs中fs模块下载文件并保存在文件夹中</p>
+<a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">var fs = require(<span class="string">"fs"</span>);</span><br><span class="line">var http = require(<span class="string">"http"</span>);</span><br><span class="line">var url = require(<span class="string">"url"</span>);</span><br><span class="line"></span><br><span class="line">var execlURL = <span class="string">'http://58.252.60.156:9000/execl/uploadTemplate.xlsx'</span>;</span><br><span class="line">var options = url.parse(execlURL);</span><br><span class="line"></span><br><span class="line">var req=http.request(options,<span class="keyword">function</span>(res)&#123;</span><br><span class="line">    // res.setEncoding(<span class="string">"utf-8"</span>);</span><br><span class="line">    var data = [];</span><br><span class="line">    var size = 0;</span><br><span class="line">    res.on(<span class="string">"data"</span>,<span class="keyword">function</span>(chunk)&#123;</span><br><span class="line">        data.push(chunk);</span><br><span class="line">        size+= chunk.length;</span><br><span class="line">        // console.log(chunk.toString())</span><br><span class="line">        // fs.writeFileSync(<span class="string">'output.txt'</span>, chunk.toString(), <span class="keyword">function</span> (err) &#123;</span><br><span class="line">        //     <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        //         console.log(err);</span><br><span class="line">        //     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        //         console.log(<span class="string">'ok.'</span>);</span><br><span class="line">        //     &#125;</span><br><span class="line">        // &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    res.on(<span class="string">"end"</span>,<span class="keyword">function</span>(err)&#123;</span><br><span class="line">        var dataTwo = Buffer.concat(data, size);</span><br><span class="line">        var fileName = <span class="string">'./execl/outputExectemplate.xlsx'</span>;</span><br><span class="line">        fs.writeFileSync(fileName,dataTwo);</span><br><span class="line">    &#125;);</span><br><span class="line">    console.log(res.statusCode);</span><br><span class="line">&#125;);</span><br><span class="line">req.on(<span class="string">"error"</span>,<span class="keyword">function</span>(err)&#123;</span><br><span class="line">    console.log(err.message);</span><br><span class="line">&#125;);</span><br><span class="line">req.end();</span><br></pre></td></tr></table></figure>
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/nodejs/">nodejs</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/04/20/实用的黑科技/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">实用的黑科技</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/04/08/非常有用的-JavaScript-Hacks/">
+        <span class="next-text nav-default">非常有用的 JavaScript Hacks</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Deng Chao</span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

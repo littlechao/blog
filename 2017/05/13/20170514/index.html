@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="把一串数字等位分割并添加字符在分割的中间">
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Leslie">
+
+
+
+
+
+
+<link rel="canonical" href="http://idyzz.com/2017/05/13/20170514/">
+
+
+<meta name="description" content="第一种方法12345678var data = [  &amp;#123; &quot;id&quot;: &quot;1&quot;, &quot;name&quot;: &quot;华为&quot;, &quot;data&quot;: &quot;25u6s8f545d3&quot; &amp;#125;,  &amp;#123; &quot;id&quot;: &quot;2&quot;, &quot;name&quot;: &quot;小米&quot;, &quot;data&quot;: &quot;cd58de9d3c5d&quot; &amp;#125;,];data.forEach(item =&amp;gt; &amp;#123;  item.mac = i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="把一串数字等位分割并添加字符在分割的中间">
+<meta property="og:url" content="http://idyzz.com/2017/05/13/20170514/index.html">
+<meta property="og:site_name" content="Leslie">
+<meta property="og:description" content="第一种方法12345678var data = [  &amp;#123; &quot;id&quot;: &quot;1&quot;, &quot;name&quot;: &quot;华为&quot;, &quot;data&quot;: &quot;25u6s8f545d3&quot; &amp;#125;,  &amp;#123; &quot;id&quot;: &quot;2&quot;, &quot;name&quot;: &quot;小米&quot;, &quot;data&quot;: &quot;cd58de9d3c5d&quot; &amp;#125;,];data.forEach(item =&amp;gt; &amp;#123;  item.mac = i">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-23T07:08:42.169Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="把一串数字等位分割并添加字符在分割的中间">
+<meta name="twitter:description" content="第一种方法12345678var data = [  &amp;#123; &quot;id&quot;: &quot;1&quot;, &quot;name&quot;: &quot;华为&quot;, &quot;data&quot;: &quot;25u6s8f545d3&quot; &amp;#125;,  &amp;#123; &quot;id&quot;: &quot;2&quot;, &quot;name&quot;: &quot;小米&quot;, &quot;data&quot;: &quot;cd58de9d3c5d&quot; &amp;#125;,];data.forEach(item =&amp;gt; &amp;#123;  item.mac = i">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> 把一串数字等位分割并添加字符在分割的中间 - Leslie </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Leslie</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/">
+                            
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                关于
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          把一串数字等位分割并添加字符在分割的中间
+        
+      </h1>
+
+      <time class="post-time">
+          May 13 2017
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <a id="more"></a>
+<h1 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var data = [</span><br><span class="line">  &#123; <span class="string">"id"</span>: <span class="string">"1"</span>, <span class="string">"name"</span>: <span class="string">"华为"</span>, <span class="string">"data"</span>: <span class="string">"25u6s8f545d3"</span> &#125;,</span><br><span class="line">  &#123; <span class="string">"id"</span>: <span class="string">"2"</span>, <span class="string">"name"</span>: <span class="string">"小米"</span>, <span class="string">"data"</span>: <span class="string">"cd58de9d3c5d"</span> &#125;,</span><br><span class="line">];</span><br><span class="line">data.forEach(item =&gt; &#123;</span><br><span class="line">  item.mac = item.data.replace(/\w&#123;2&#125;\B/g, <span class="string">'$&amp;:'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">console.log(data)</span><br></pre></td></tr></table></figure>
+<h1 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a>第二种方法</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (var i = 0; i &lt; data.length; i++) &#123;</span><br><span class="line">    var mac = data[i].data.toUpperCase();</span><br><span class="line">        mac1 = mac.substring(0, 2);</span><br><span class="line">        mac2 = mac.substring(2, 4);</span><br><span class="line">        mac3 = mac.substring(4, 6);</span><br><span class="line">        mac4 = mac.substring(6, 8);</span><br><span class="line">        mac5 = mac.substring(8, 10);</span><br><span class="line">        mac6 = mac.substring(10, 12);</span><br><span class="line">        var mac = mac1 + <span class="string">':'</span> + mac2 + <span class="string">':'</span> + mac3 + <span class="string">':'</span> + mac4 + <span class="string">':'</span> + mac5 + <span class="string">':'</span> + mac6;</span><br><span class="line">        data[i].mac = mac;</span><br><span class="line"> &#125;;</span><br></pre></td></tr></table></figure>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/05/13/20170513/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">判断浏览器是否联网</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/05/11/20170511/">
+        <span class="next-text nav-default">将图片转canvas</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Deng Chao</span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>
