@@ -17,6 +17,8 @@
 
 
 
+  <meta name="keywords" content="js,">
+
 
 
 
@@ -31,14 +33,18 @@
 <link rel="canonical" href="http://idyzz.com/2019/03/06/事件的节流（throttle）与防抖（debounce）/">
 
 
+<meta name="description" content="第一次触发的 scroll 事件对应的回调才会执行，而“一段时间内”触发的后续的 scroll 回调都会被节流阀无视掉。12345678910111213141516171819202122// fn是我们需要包装的事件回调, interval是时间间隔的阈值function throttle(fn, interval) &amp;#123;  // last为上一次触发回调的时间  let last =">
+<meta name="keywords" content="js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="事件的节流（throttle）与防抖（debounce）">
 <meta property="og:url" content="http://idyzz.com/2019/03/06/事件的节流（throttle）与防抖（debounce）/index.html">
 <meta property="og:site_name" content="Leslie">
+<meta property="og:description" content="第一次触发的 scroll 事件对应的回调才会执行，而“一段时间内”触发的后续的 scroll 回调都会被节流阀无视掉。12345678910111213141516171819202122// fn是我们需要包装的事件回调, interval是时间间隔的阈值function throttle(fn, interval) &amp;#123;  // last为上一次触发回调的时间  let last =">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-06T05:57:20.917Z">
+<meta property="og:updated_time" content="2019-04-17T07:26:06.352Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="事件的节流（throttle）与防抖（debounce）">
+<meta name="twitter:description" content="第一次触发的 scroll 事件对应的回调才会执行，而“一段时间内”触发的后续的 scroll 回调都会被节流阀无视掉。12345678910111213141516171819202122// fn是我们需要包装的事件回调, interval是时间间隔的阈值function throttle(fn, interval) &amp;#123;  // last为上一次触发回调的时间  let last =">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
@@ -131,12 +137,19 @@
 
     
             <div class="post-content">
-            
+            <h1 id="第一次触发的-scroll-事件对应的回调才会执行，而“一段时间内”触发的后续的-scroll-回调都会被节流阀无视掉。"><a href="#第一次触发的-scroll-事件对应的回调才会执行，而“一段时间内”触发的后续的-scroll-回调都会被节流阀无视掉。" class="headerlink" title="第一次触发的 scroll 事件对应的回调才会执行，而“一段时间内”触发的后续的 scroll 回调都会被节流阀无视掉。"></a>第一次触发的 scroll 事件对应的回调才会执行，而“一段时间内”触发的后续的 scroll 回调都会被节流阀无视掉。</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// fn是我们需要包装的事件回调, interval是时间间隔的阈值</span><br><span class="line"><span class="keyword">function</span> throttle(fn, interval) &#123;</span><br><span class="line">  // last为上一次触发回调的时间</span><br><span class="line">  <span class="built_in">let</span> last = 0</span><br><span class="line">  </span><br><span class="line">  // 将throttle处理结果当作函数返回</span><br><span class="line">  <span class="built_in">return</span> <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">      // 记录本次触发回调的时间</span><br><span class="line">      <span class="built_in">let</span> now = +new Date()</span><br><span class="line">      // 判断上次触发的时间和本次触发的时间差是否小于时间间隔的阈值</span><br><span class="line">      <span class="keyword">if</span> (now - last &gt;= interval) &#123;</span><br><span class="line">      // 如果时间间隔大于我们设定的时间间隔阈值，则执行回调</span><br><span class="line">          last = now;</span><br><span class="line">          fn.apply(this, arguments);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 用throttle来包装scroll的回调</span><br><span class="line">const better_scroll = throttle(() =&gt; console.log(<span class="string">'触发了滚动事件'</span>), 1000)</span><br><span class="line"></span><br><span class="line">document.addEventListener(<span class="string">'scroll'</span>, better_scroll)</span><br></pre></td></tr></table></figure>
+<h1 id="delay-时间内，我可以为你重新生成定时器；但只要delay的时间到了，我必须要给用户一个响应-并在最后执行一次。"><a href="#delay-时间内，我可以为你重新生成定时器；但只要delay的时间到了，我必须要给用户一个响应-并在最后执行一次。" class="headerlink" title="delay 时间内，我可以为你重新生成定时器；但只要delay的时间到了，我必须要给用户一个响应,并在最后执行一次。"></a>delay 时间内，我可以为你重新生成定时器；但只要delay的时间到了，我必须要给用户一个响应,并在最后执行一次。</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">// fn是我们需要包装的事件回调, delay是时间间隔的阈值</span><br><span class="line"><span class="keyword">function</span> throttle(fn, delay) &#123;</span><br><span class="line">  // last为上一次触发回调的时间, timer是定时器</span><br><span class="line">  <span class="built_in">let</span> last = 0, timer = null</span><br><span class="line">  // 将throttle处理结果当作函数返回</span><br><span class="line">  </span><br><span class="line">  <span class="built_in">return</span> <span class="function"><span class="title">function</span></span> () &#123; </span><br><span class="line">    // 保留调用时的this上下文</span><br><span class="line">    <span class="built_in">let</span> context = this</span><br><span class="line">    // 保留调用时传入的参数</span><br><span class="line">    <span class="built_in">let</span> args = arguments</span><br><span class="line">    // 记录本次触发回调的时间</span><br><span class="line">    <span class="built_in">let</span> now = +new Date()</span><br><span class="line">    </span><br><span class="line">    // 判断上次触发的时间和本次触发的时间差是否小于时间间隔的阈值</span><br><span class="line">    <span class="keyword">if</span> (now - last &lt; delay) &#123;</span><br><span class="line">    // 如果时间间隔小于我们设定的时间间隔阈值，则为本次触发操作设立一个新的定时器</span><br><span class="line">       clearTimeout(timer)</span><br><span class="line">       timer = setTimeout(<span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">          last = now</span><br><span class="line">          fn.apply(context, args)</span><br><span class="line">        &#125;, delay)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        // 如果时间间隔超出了我们设定的时间间隔阈值，那就不等了，无论如何要反馈给用户一次响应</span><br><span class="line">        last = now</span><br><span class="line">        fn.apply(context, args)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 用新的throttle包装scroll的回调</span><br><span class="line">const better_scroll = throttle(() =&gt; console.log(<span class="string">'触发了滚动事件'</span>), 1000)</span><br><span class="line"></span><br><span class="line">document.addEventListener(<span class="string">'scroll'</span>, better_scroll)</span><br></pre></td></tr></table></figure>
             </div>
           
 
     
       <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/js/">js</a>
+		  
+		</div>
 		
 
         
