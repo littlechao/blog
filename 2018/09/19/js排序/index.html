@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="js排序">
+
+
+
+
+  <meta name="keywords" content="javascript,">
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Leslie">
+
+
+
+
+
+
+<link rel="canonical" href="http://idyzz.com/2018/09/19/js排序/">
+
+
+<meta name="description" content="1. JavaScript的sort()方法123456var array = [1,4,-8,-3,6,12,9,8];function compare(val1,val2)&amp;#123;    return val1-val2;&amp;#125;;array.sort(compare);document.write(array); sort()方法按照升序排列数组项，会调用每个数组项的toString">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js排序">
+<meta property="og:url" content="http://idyzz.com/2018/09/19/js排序/index.html">
+<meta property="og:site_name" content="Leslie">
+<meta property="og:description" content="1. JavaScript的sort()方法123456var array = [1,4,-8,-3,6,12,9,8];function compare(val1,val2)&amp;#123;    return val1-val2;&amp;#125;;array.sort(compare);document.write(array); sort()方法按照升序排列数组项，会调用每个数组项的toString">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-19T08:01:52.369Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js排序">
+<meta name="twitter:description" content="1. JavaScript的sort()方法123456var array = [1,4,-8,-3,6,12,9,8];function compare(val1,val2)&amp;#123;    return val1-val2;&amp;#125;;array.sort(compare);document.write(array); sort()方法按照升序排列数组项，会调用每个数组项的toString">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> js排序 - Leslie </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Leslie</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/">
+                            
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                关于
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          js排序
+        
+      </h1>
+
+      <time class="post-time">
+          Sep 19 2018
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h2 id="1-JavaScript的sort-方法"><a href="#1-JavaScript的sort-方法" class="headerlink" title="1. JavaScript的sort()方法"></a>1. JavaScript的sort()方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var array = [1,4,-8,-3,6,12,9,8];</span><br><span class="line">function compare(val1,val2)&#123;</span><br><span class="line">    return val1-val2;</span><br><span class="line">&#125;;</span><br><span class="line">array.sort(compare);</span><br><span class="line">document.write(array);</span><br></pre></td></tr></table></figure>
+<p>sort()方法按照升序排列数组项，会调用每个数组项的toString()转型方法，然后比较得到的字符串。<br>toString()方法是把布尔值或BooleanObject转换为字符串，并返回结果。<br>compare()函数方法是一个比较函数，作为sort()方法的参数。</p>
+<h2 id="2-冒泡排序（从后向前）"><a href="#2-冒泡排序（从后向前）" class="headerlink" title="2. 冒泡排序（从后向前）"></a>2. 冒泡排序（从后向前）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var array = [1,4,-8,-3,6,12,9,8];</span><br><span class="line">function sort(arr)&#123;</span><br><span class="line">    for(var j=0;j&lt;arr.length-1;j++)&#123;</span><br><span class="line">    //两两比较，如果前一个比后一个大，则交换位置。</span><br><span class="line">       for(var i=0;i&lt;arr.length-1-j;i++)&#123;</span><br><span class="line">            if(arr[i]&gt;arr[i+1])&#123;</span><br><span class="line">                var temp = arr[i];</span><br><span class="line">                arr[i] = arr[i+1];</span><br><span class="line">                arr[i+1] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">sort(array);</span><br><span class="line">document.write(array);</span><br></pre></td></tr></table></figure>
+<p>（1）比较相邻的元素。如果第一个比第二个大，就交换他们两个位置。<br>（2）对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。<br>（3）针对所有的元素重复以上的步骤，除了最后一个。<br>（4）持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。</p>
+<h2 id="3-快速排序：递归思想，两边快速的排序，冒泡排序的改进"><a href="#3-快速排序：递归思想，两边快速的排序，冒泡排序的改进" class="headerlink" title="3. 快速排序：递归思想，两边快速的排序，冒泡排序的改进"></a>3. 快速排序：递归思想，两边快速的排序，冒泡排序的改进</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">var array = [1,4,-8,-3,6,12,9,8];</span><br><span class="line">function quickSort(arr)&#123;</span><br><span class="line">//如果数组长度小于等于1，则返回数组本身</span><br><span class="line">    if(arr.length&lt;=1)&#123;</span><br><span class="line">        return arr;</span><br><span class="line">    &#125;</span><br><span class="line">    //定义中间值的索引</span><br><span class="line">    var index = Math.floor(arr.length/2);</span><br><span class="line">    //取到中间值</span><br><span class="line">    var temp = arr.splice(index,1);</span><br><span class="line">    //定义左右部分数组</span><br><span class="line">    var left = [];</span><br><span class="line">    var right = [];</span><br><span class="line">    for(var i=0;i&lt;arr.length;i++)&#123;</span><br><span class="line">    //如果元素比中间值小，那么放在左边，否则放右边</span><br><span class="line">        if(arr[i]&lt;temp)&#123;</span><br><span class="line">            left.push(arr[i]);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            right.push(arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return quickSort(left).concat(temp,quickSort(right));</span><br><span class="line">&#125;</span><br><span class="line">document.write(quickSort(array));</span><br></pre></td></tr></table></figure>
+<p>Math.floor(x)方法是向下取整，返回小于或等于x的最接近的整数。<br>splice(index,num,item)方法是向数组中添加项目，或是从数组中删除项目，并返回被删除的项目。<br>（1）index是整数，被操作项目所在的位置（必须）<br>（2）num是整数，要删除的项目的数量，如果为0，表示不删除（必须）<br>（3）item是向数组中添加的新项目，可以是多个（可选）<br>push()方法是向数组末尾添加一个或多个新项目并返回新数组的长度<br>concat()方法连接两个或多个数组，不会改变原有数组，返回一个新数组</p>
+<h2 id="4-插入排序"><a href="#4-插入排序" class="headerlink" title="4. 插入排序"></a>4. 插入排序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">var array = [1,4,-8,-3,6,12,9,8];</span><br><span class="line">function insertSort(arr)&#123;</span><br><span class="line">//假设第0元素是有序序列，第1元素之后是无序的序列。从第1元素开始依次将无序序列的元素插入到有序序列中</span><br><span class="line">    for(var i=1; i&lt;arr.length;i++)&#123;</span><br><span class="line">        if(arr[i]&lt;arr[i-1])&#123;</span><br><span class="line">            //取出无序序列中需要插入的第i个元素</span><br><span class="line">            var temp = arr[i];</span><br><span class="line">            //定义有序中的最后一个位置</span><br><span class="line">            var j = i-1;</span><br><span class="line">            arr[i] = arr[j];</span><br><span class="line">            //比较大小，找到插入的位置</span><br><span class="line">            while(j&gt;=0&amp;&amp;temp&lt;arr[j])&#123;</span><br><span class="line">                arr[j+1] = arr[j];</span><br><span class="line">                j--;</span><br><span class="line">            &#125;;</span><br><span class="line">            //插入</span><br><span class="line">            arr[j+1] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">insertSort(array)</span><br><span class="line">document.write(array);</span><br></pre></td></tr></table></figure>
+<p>（1）从第一个元素开始，该元素可以认为已经被排序<br>（2）取出下一个元素，在已经排序的元素序列中扫描<br>（3）如果该元素（已排序）大于新元素，将该元素移到下一位置<br>（4）重复步骤3，直到找到已排序的元素小于或者等于新元素的位置<br>（5）将新元素插入到下一位置中<br>（6）重复步骤2</p>
+<h2 id="5-选择排序"><a href="#5-选择排序" class="headerlink" title="5. 选择排序"></a>5. 选择排序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var array = [1,4,-8,-3,6,12,9,8];</span><br><span class="line">function selectSort(arr)&#123;</span><br><span class="line">    for(var i=0;i&lt;arr.length;i++)&#123;</span><br><span class="line">        //设置当前范围最小值和索引</span><br><span class="line">        var min = arr[i];</span><br><span class="line">        var minIndex = i;</span><br><span class="line">        //在该范围选出最小值</span><br><span class="line">        for(var j=i+1;j&lt;arr.length;j++)&#123;</span><br><span class="line">            if(min&gt;arr[j])&#123;</span><br><span class="line">                min = arr[j];</span><br><span class="line">                minIndex = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //将最小值插入,并将原来位置的最小值删除</span><br><span class="line">        arr.splice(i,0,min);</span><br><span class="line">        arr.splice(minIndex+1,1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">selectSort(array);</span><br><span class="line">document.write(array);</span><br></pre></td></tr></table></figure>
+<p>（1）在未排序序列中找到最小（大）元素<br>（2）并存放到排序序列的起始位置<br>（3）然后，再从剩余未排序元素中继续寻找最小（大）元素<br>（4）然后放到已排序序列的末尾。<br>（5）以此类推</p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/javascript/">javascript</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/09/25/vue打包后ie无法访问/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">vue打包后ie无法访问</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/07/25/工具方法/">
+        <span class="next-text nav-default">工具方法</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Deng Chao</span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":0.5,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"superSample":2,"width":90,"height":180,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"scale":0.5,"show":true},"log":false});</script></body>
+</html>
