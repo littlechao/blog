@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="localstrage数据存储设置过期时间">
+
+
+
+
+  <meta name="keywords" content="javascript,">
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Leslie">
+
+
+
+
+
+
+<link rel="canonical" href="http://idyzz.com/2019/09/25/localstrage数据存储设置过期时间/">
+
+
+<meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576class storage &amp;#123;	constructor(props) &amp;#123;		this.prop">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="localstrage数据存储设置过期时间">
+<meta property="og:url" content="http://idyzz.com/2019/09/25/localstrage数据存储设置过期时间/index.html">
+<meta property="og:site_name" content="Leslie">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576class storage &amp;#123;	constructor(props) &amp;#123;		this.prop">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-25T06:06:05.814Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="localstrage数据存储设置过期时间">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576class storage &amp;#123;	constructor(props) &amp;#123;		this.prop">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> localstrage数据存储设置过期时间 - Leslie </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Leslie</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/">
+                            
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                归档
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                关于
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          localstrage数据存储设置过期时间
+        
+      </h1>
+
+      <time class="post-time">
+          Sep 25 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">storage</span> </span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">		<span class="keyword">this</span>.props = props || &#123;&#125;</span><br><span class="line">		<span class="keyword">this</span>.source = <span class="keyword">this</span>.props.source || <span class="built_in">window</span>.localStorage</span><br><span class="line">		<span class="keyword">this</span>.initRun();</span><br><span class="line">	&#125;</span><br><span class="line">	initRun()&#123;</span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		* set 存储方法</span></span><br><span class="line"><span class="comment">		* @ param &#123;String&#125; 	key 键</span></span><br><span class="line"><span class="comment">		* @ param &#123;String&#125; 	value 值，存储的值可能是数组/对象，不能直接存储，需要转换 JSON.stringify</span></span><br><span class="line"><span class="comment">		* @ param &#123;String&#125; 	expired 过期时间，以分钟为单位</span></span><br><span class="line"><span class="comment">		*/</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'panduan'</span>)</span><br><span class="line">		<span class="keyword">const</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"__expires__"</span>);</span><br><span class="line">		<span class="keyword">let</span> data = <span class="keyword">this</span>.source;</span><br><span class="line">		<span class="keyword">let</span> list = <span class="built_in">Object</span>.keys(data);</span><br><span class="line">		<span class="keyword">if</span>(list.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">			list.map(<span class="function">(<span class="params">key,v</span>)=&gt;</span>&#123;</span><br><span class="line">				<span class="keyword">if</span>( !reg.test(key ))&#123;</span><br><span class="line">					<span class="keyword">let</span> now = <span class="built_in">Date</span>.now();</span><br><span class="line">					<span class="keyword">let</span> expires = data[<span class="string">`<span class="subst">$&#123;key&#125;</span>__expires__`</span>]||<span class="built_in">Date</span>.now+<span class="number">1</span>;</span><br><span class="line">					<span class="keyword">if</span> (now &gt;= expires ) &#123;</span><br><span class="line">						<span class="keyword">this</span>.remove(key);</span><br><span class="line">					&#125;;</span><br><span class="line">				&#125;;</span><br><span class="line">				<span class="keyword">return</span> key;</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">    remove(key) &#123;</span><br><span class="line">        <span class="keyword">const</span> data = <span class="keyword">this</span>.source,</span><br><span class="line">            value = data[key];</span><br><span class="line">        <span class="keyword">delete</span> data[key];</span><br><span class="line">        <span class="keyword">delete</span> data[<span class="string">`<span class="subst">$&#123;key&#125;</span>__expires__`</span>];</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">get</span>(key) &#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        * get 获取方法</span></span><br><span class="line"><span class="comment">        * @ param &#123;String&#125; 	key 键</span></span><br><span class="line"><span class="comment">        * @ param &#123;String&#125; 	expired 存储时为非必须字段，所以有可能取不到，默认为 Date.now+1</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        <span class="keyword">const</span> source = <span class="keyword">this</span>.source,</span><br><span class="line">        expired = source[<span class="string">`<span class="subst">$&#123;key&#125;</span>__expires__`</span>]||<span class="built_in">Date</span>.now+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">const</span> now = <span class="built_in">Date</span>.now();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ( now &gt;= expired ) &#123;</span><br><span class="line">            <span class="keyword">this</span>.remove(key);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> value = source[key] ? <span class="built_in">JSON</span>.parse(source[key]) : source[key];</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span>(key, value, expired) &#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        * set 存储方法</span></span><br><span class="line"><span class="comment">        * @ param &#123;String&#125; 	key 键</span></span><br><span class="line"><span class="comment">        * @ param &#123;String&#125; 	value 值，</span></span><br><span class="line"><span class="comment">        * @ param &#123;String&#125; 	expired 过期时间，以分钟为单位，非必须</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        <span class="keyword">let</span> source = <span class="keyword">this</span>.source;</span><br><span class="line">        source[key] = <span class="built_in">JSON</span>.stringify(value);</span><br><span class="line">        <span class="keyword">if</span> (expired)&#123;</span><br><span class="line">            source[<span class="string">`<span class="subst">$&#123;key&#125;</span>__expires__`</span>] = <span class="built_in">Date</span>.now() + <span class="number">1000</span>*<span class="number">60</span>*expired</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> storageFun = <span class="keyword">new</span> storage();</span><br><span class="line"><span class="keyword">var</span> json = &#123;</span><br><span class="line">    <span class="string">"1"</span>:<span class="number">2</span>,</span><br><span class="line">    <span class="string">"2"</span>:<span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line">storageFun.set(<span class="string">'data'</span>,json,<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/javascript/">javascript</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2019/03/06/事件的节流（throttle）与防抖（debounce）/">
+        <span class="next-text nav-default">事件的节流（throttle）与防抖（debounce）</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Deng Chao</span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":0.5,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"superSample":2,"width":90,"height":180,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"scale":0.5,"show":true},"log":false});</script></body>
+</html>
